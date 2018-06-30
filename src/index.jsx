@@ -13,5 +13,5 @@ ReactDOM.render(
     <Provider store={store}>
         <GoldenLayoutWrapper/>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('wrapper')
 );
