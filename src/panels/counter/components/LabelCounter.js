@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import {xconnect} from '../utils/redux-utils'
+import {xconnect} from '../../../utils/redux-utils'
 import {get} from 'lodash'
 
 function LabelCounter(props) {

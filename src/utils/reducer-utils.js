@@ -4,12 +4,8 @@ import { omit, isEmpty, unset, reduce, get, set, identity, size, mapValues } fro
 
 export const PANELS_PATH = 'panels'
 
-export const initialRootState = {
-  user: 'varun'
-}
-
 const root = {
-  user: () => 'varun'
+  shared: () => 'path'
 }
 
 let panelsRoot = {}

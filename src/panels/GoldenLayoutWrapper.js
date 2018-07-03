@@ -4,7 +4,7 @@ import GoldenLayout from 'golden-layout'
 import PropTypes from 'prop-types'
 import {uniqueId} from 'lodash'
 
-import Panel from './Panel'
+import Panel from './counter/PanelCounter'
 import {config} from '../config'
 import {wrapPanel} from '../utils/panel-utils'
 

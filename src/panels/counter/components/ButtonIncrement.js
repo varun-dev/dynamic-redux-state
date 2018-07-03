@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types'
 import {incrementCount} from '../actions'
-import {xconnect} from '../utils/redux-utils'
+import {xconnect} from '../../../utils/redux-utils'
 
-function IncrementButton(props) {
+function ButtonIncrement(props) {
   return (
     <button onClick={props.incrementCount}>Increment</button>
   )
 }
 
-IncrementButton.PropTypes = {
+ButtonIncrement.PropTypes = {
   incrementCount: PropTypes.func.isRequired
 }
 
-export default xconnect(null, {incrementCount})(IncrementButton)
+export default xconnect(null, {incrementCount})(ButtonIncrement)

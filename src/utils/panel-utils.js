@@ -2,7 +2,7 @@ import React from 'react'
 import {uniqueId} from 'lodash'
 import {Provider} from 'react-redux'
 
-import {panelReducer} from '../reducers'
+import {panelReducer} from '../panels/counter/reducers'
 import {addPanelReducer} from './reducer-utils'
 import {PanelProvider} from './react-utils'
 
