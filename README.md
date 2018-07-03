@@ -1,6 +1,30 @@
-# golden-layout-react-redux
-Minimal example showing how to link redux state to react components embedded within golden-layout.
+..work in progress
+
+# Dynamic Redux State
+
+This project demonstrates 
+- dynamic redux state paths
+- multiple instances of reducers
 
 Run `npm install`, then `npm run dev` and point your browser to `localhost:8080` to run the example.
 
-The example consists of three golden-layout tabs, each with a single React component. There are two buttons and one label which displays a count stored in the Redux state. The buttons increment or decrement this count.
+The example uses Golden Layout as a window manager and consists of a panel called Counter.
+One instance of this panel is already open on load. Add more instances of the Counter
+panel by dragging the label from left bar and notice the redux state changes
+
+- Every panel's state resides at path 
+`panels.PanelName.ID`. This path gets created and destroyed as we add and remove panels. This is abstracted
+by the `<PanelProvider>`
+- The panel path is set in the react context for components to access their own states
+- The panel path is also set in `ownProps` and redux actions for reducers to set the state for the relevant panel.
+This is abstracted by an extended version of redux connect API.
+
+#### Pending todos
+- implement panel destroy for removing state and reducers
+- fix the warning on setState while dragging a new panel
+- create an action adding new panel
+- fix mutation issue with dynamically adding state path 
+
+#### External projects referred
+https://github.com/andrewcapodieci/golden-layout-react-redux
+

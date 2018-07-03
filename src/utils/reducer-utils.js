@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { assign } from 'lodash/fp'
-import { omit, isEmpty, unset, reduce, get, set, identity, size, mapValues } from 'lodash'
+import {omit, isEmpty, unset, reduce, get, set, identity, size, mapValues, includes} from 'lodash'
 
 export const PANELS_PATH = 'panels'
 
