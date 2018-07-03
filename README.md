@@ -19,6 +19,10 @@ by the `<PanelProvider>`
 - The panel path is also set in `ownProps` and redux actions for reducers to set the state for the relevant panel.
 This is abstracted by an extended version of redux connect API.
 
+
+![image](https://user-images.githubusercontent.com/359805/42211232-ff19c702-7eaa-11e8-8678-8b328789334a.png)
+
+
 #### Pending todos
 - implement panel destroy for removing state and reducers
 - fix the warning on setState while dragging a new panel
