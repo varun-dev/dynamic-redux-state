@@ -8,7 +8,7 @@ function ButtonIncrement(props) {
   )
 }
 
-ButtonIncrement.PropTypes = {
+ButtonIncrement.propTypes = {
   incrementCount: PropTypes.func.isRequired
 }
 

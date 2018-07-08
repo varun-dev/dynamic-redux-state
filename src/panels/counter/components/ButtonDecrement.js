@@ -8,7 +8,7 @@ function ButtonDecrement(props) {
   )
 }
 
-ButtonDecrement.PropTypes = {
+ButtonDecrement.propTypes = {
   decrementCount: PropTypes.func.isRequired
 }
 

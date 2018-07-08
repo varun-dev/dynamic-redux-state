@@ -5,9 +5,12 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default () => ({
   entry: [
-    'webpack-dev-server/client?http://localhost:8080', // webpack dev server host and port
-    path.join(__dirname, 'src/index.js'), // entry point of app
+    path.join(__dirname, 'src/index.js'),
   ],
+  devServer: {
+    port:9000,
+    contentBase: path.resolve(__dirname, "dist/")
+  },
   output: {
     path: path.join(__dirname + '/dist'),
     filename: 'bundle.js',
@@ -20,9 +23,7 @@ export default () => ({
     // Necessary b/c golden-layout depends on all 3 of these libs via UMD globals
     new webpack.ProvidePlugin({
       React: 'react',
-      ReactDOM: 'react-dom',
-      $: 'jquery',
-      jQuery: 'jquery'
+      ReactDOM: 'react-dom'
     }),
     new ExtractTextPlugin('styles.css')
   ],

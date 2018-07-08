@@ -12,7 +12,7 @@ import {PanelProvider} from './react-utils'
 export function wrapPanel(Component, store) {
   return class Wrapped extends React.Component {
     render() {
-      const id = 'p' + uniqueId()
+      const id = 'p-' + uniqueId()
       const { panelName } = this.props
       const panelId = panelName + '.' + id
       store.replaceReducer(addPanelReducer(panelName, id, panelReducer))

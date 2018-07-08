@@ -8,8 +8,8 @@ function LabelCounter(props) {
   )
 }
 
-LabelCounter.PropTypes = {
-  label: PropTypes.number.isRequired
+LabelCounter.propTypes = {
+  label: PropTypes.number
 }
 
 function mapStateToProps(state, {panelId}) {
