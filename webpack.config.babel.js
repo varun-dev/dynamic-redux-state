@@ -1,9 +1,9 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const path = require('path')
+const HtmlWebpackPlugin  = require('html-webpack-plugin')
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-export default () => ({
+module.exports = {
   entry: [
     path.join(__dirname, 'src/index.js'),
   ],
@@ -30,22 +30,11 @@ export default () => ({
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         include: path.join(__dirname, 'src'),
         use: [{
-          loader: 'babel-loader',
-          options: {
-            babelrc: false, // Tells webpack not to use the .babelrc file
-            presets: [
-              ['babel-preset-env', {
-                "targets": {"firefox": 52, "chrome": 55},
-                "modules": false,
-                "loose": true
-              }],
-              'react' // Transform JSX into React.createElement calls
-            ]
-          },
+          loader: 'babel-loader'
         }]
       },
       {
@@ -63,4 +52,4 @@ export default () => ({
     extensions: ['.js', '.jsx']
   },
   devtool: 'source-map'
-});
+}
