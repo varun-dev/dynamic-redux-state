@@ -3,8 +3,9 @@
 # Dynamic Redux State
 
 This example demonstrates how to
-- implement dynamic redux state paths
-- have multiple instances of reducers
+- dynamic state paths and reducers
+- multiple instances of reducers
+- code spliting (..coming soon)
 
 Run `npm install`, then `npm run dev` and point your browser to `localhost:8080` to run the example.
 
@@ -23,11 +24,13 @@ for the relevant panel. This is implemented by extending functionaliy of redux c
 
 
 #### Pending todos
+- code splitting example
 - implement panel destroy for removing state and reducers
-- fix the warning on setState while dragging a new panel
 - create an action for adding new panel
-- fix mutation issue with dynamically adding state path 
+
 
 #### External refernces
+
 https://github.com/andrewcapodieci/golden-layout-react-redux
+
 https://github.com/erikras/multireducer
