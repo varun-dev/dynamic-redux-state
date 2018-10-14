@@ -2,20 +2,20 @@ import { cloneElement, Children, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 export class PanelProvider extends PureComponent {
-  constructor (props, context) {
+  constructor(props, context) {
     super(props, context)
     this.panelId = props.panelId
   }
 
-  getChildContext () {
+  getChildContext() {
     return { panelId: this.panelId }
   }
 
-  render () {
+  render() {
     return this.props.panelId
       ? cloneElement(
         Children.only(this.props.children),
-        { panelId: this.panelId }
+        { panelId: this.panelId },
       )
       : null
   }
@@ -23,9 +23,9 @@ export class PanelProvider extends PureComponent {
 
 PanelProvider.propTypes = {
   panelId: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 }
 
 PanelProvider.childContextTypes = {
-  panelId: PropTypes.string.isRequired
+  panelId: PropTypes.string.isRequired,
 }

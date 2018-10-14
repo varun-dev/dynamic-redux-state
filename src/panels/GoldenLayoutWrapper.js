@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import GoldenLayout from 'golden-layout'
 import PropTypes from 'prop-types'
-import {uniqueId} from 'lodash'
+import { uniqueId } from 'lodash'
 
 import Panel from './counter/PanelCounter'
-import {config} from '../config'
-import {wrapPanel} from '../utils/panel-utils'
+import { config } from '../config'
+import { wrapPanel } from '../utils/panel-utils'
 
 export default class GoldenLayoutWrapper extends React.Component {
   componentDidMount() {
@@ -23,30 +23,31 @@ export default class GoldenLayoutWrapper extends React.Component {
       layout.updateSize()
     })
 
-    function addPanel (config) {
+    function addPanel(config) {
       layout.registerComponent(config.component,
-        wrapPanel(Panel, store)
-      )
-      const createDragSource = element => {
+        wrapPanel(Panel, store))
+      const createDragSource = (element) => {
         layout.createDragSource(element, config)
       }
 
       ReactDOM.render(<li
         ref={createDragSource}
-      >{`Drag ${config.title} Panel`}</li>, menuDom)
+      >
+        {`Drag ${config.title} Panel`}
+                      </li>, menuDom)
     }
   }
 
   render() {
     return (
       <div>
-        <ul id='menuContainer' ref={el => this.menu = el}></ul>
-        <div id='layoutContainer' ref={el => this.layout = el}/>
+        <ul id="menuContainer" ref={el => this.menu = el} />
+        <div id="layoutContainer" ref={el => this.layout = el} />
       </div>
     )
   }
 }
 
 GoldenLayoutWrapper.contextTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
 }

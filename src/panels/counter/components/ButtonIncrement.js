@@ -1,6 +1,8 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import {incrementCount} from '../actions'
-import {xconnect} from '../../../utils/redux-utils'
+
+import { incrementCount } from '../actions'
+import { xconnect } from '../../../utils/redux-utils'
 
 function ButtonIncrement(props) {
   return (
@@ -9,7 +11,7 @@ function ButtonIncrement(props) {
 }
 
 ButtonIncrement.propTypes = {
-  incrementCount: PropTypes.func.isRequired
+  incrementCount: PropTypes.func.isRequired,
 }
 
-export default xconnect(null, {incrementCount})(ButtonIncrement)
+export default xconnect(null, { incrementCount })(ButtonIncrement)

@@ -6,8 +6,8 @@ export const config = {
       type: 'react-component',
       component: 'Panel',
       props: {
-        panelName: 'Counter'
-      }
-    }]
-  }]
+        panelName: 'Counter',
+      },
+    }],
+  }],
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import {xconnect} from '../../../utils/redux-utils'
-import {get} from 'lodash'
+import { get } from 'lodash'
+import { xconnect } from '../../../utils/redux-utils'
 
 function LabelCounter(props) {
   return (
@@ -9,12 +9,12 @@ function LabelCounter(props) {
 }
 
 LabelCounter.propTypes = {
-  label: PropTypes.number
+  label: PropTypes.number,
 }
 
-function mapStateToProps(state, {panelId}) {
+function mapStateToProps(state, { panelId }) {
   return {
-    label: get(state, `panels.${panelId}.count`)
+    label: get(state, `panels.${panelId}.count`),
   }
 }
 

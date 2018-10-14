@@ -9,10 +9,10 @@ module.exports = {
   ],
   devServer: {
     port:9000,
-    contentBase: path.resolve(__dirname, "dist/")
+    contentBase: path.resolve(__dirname, "docs/")
   },
   output: {
-    path: path.join(__dirname + '/dist'),
+    path: path.join(__dirname + '/docs'),
     filename: 'bundle.js',
   },
   plugins: [
@@ -51,5 +51,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  stats: 'errors-only'
 }
