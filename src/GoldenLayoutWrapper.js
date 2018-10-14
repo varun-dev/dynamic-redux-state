@@ -2,18 +2,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import GoldenLayout from 'golden-layout'
 import PropTypes from 'prop-types'
-import { uniqueId } from 'lodash'
 
-import Panel from './counter/PanelCounter'
-import { config } from '../config'
-import { wrapPanel } from '../utils/panel-utils'
+import Panel from './panels/counter/PanelCounter'
+import config from './layout.config'
+import wrapPanel from './utils/panel-utils'
 
 export default class GoldenLayoutWrapper extends React.Component {
+  constructor(props) {
+    super(props)
+    this.menu = React.createRef()
+    this.layout = React.createRef()
+  }
+
   componentDidMount() {
     const { store } = this.context
-    const menuDom = this.menu
-
-    const layout = new GoldenLayout(config, this.layout)
+    const menuDom = this.menu.current
+    const layout = new GoldenLayout(config, this.layout.current)
     const panels = config.content[0].content
     panels.forEach(addPanel)
 
@@ -30,19 +34,20 @@ export default class GoldenLayoutWrapper extends React.Component {
         layout.createDragSource(element, config)
       }
 
-      ReactDOM.render(<li
-        ref={createDragSource}
-      >
-        {`Drag ${config.title} Panel`}
-                      </li>, menuDom)
+      ReactDOM.render(
+        <li ref={createDragSource}>
+          {`Drag ${config.title} Panel`}
+        </li>,
+        menuDom,
+      )
     }
   }
 
   render() {
     return (
       <div>
-        <ul id="menuContainer" ref={el => this.menu = el} />
-        <div id="layoutContainer" ref={el => this.layout = el} />
+        <ul id="menuContainer" ref={this.menu} />
+        <div id="layoutContainer" ref={this.layout} />
       </div>
     )
   }

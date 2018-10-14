@@ -2,13 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import GoldenLayoutWrapper from './panels/GoldenLayoutWrapper'
+import GoldenLayoutWrapper from './GoldenLayoutWrapper'
 import { createRootReducer } from './utils/reducer-utils'
 
 import './index.css'
 
-const devToolEnahncer = window.__REDUX_DEVTOOLS_EXTENSION__
-  && window.__REDUX_DEVTOOLS_EXTENSION__()
+// eslint-disable-next-line
+const devToolEnahncer = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
 const store = createStore(createRootReducer(), devToolEnahncer)
 
 ReactDOM.render(

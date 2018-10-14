@@ -2,16 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { decrementCount } from '../actions'
-import { xconnect } from '../../../utils/redux-utils'
+import xconnect from '../../../utils/redux-utils'
 
-function ButtonDecrement(props) {
+function ButtonDecrement({ onClick }) {
   return (
-    <button onClick={props.decrementCount}>Decrement</button>
+    <button onClick={onClick}>Decrement</button>
   )
 }
 
 ButtonDecrement.propTypes = {
-  decrementCount: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
-export default xconnect(null, { decrementCount })(ButtonDecrement)
+export default xconnect(null, { onClick: decrementCount })(ButtonDecrement)

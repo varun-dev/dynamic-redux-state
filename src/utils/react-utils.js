@@ -1,7 +1,7 @@
 import { cloneElement, Children, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-export class PanelProvider extends PureComponent {
+export default class PanelProvider extends PureComponent {
   constructor(props, context) {
     super(props, context)
     this.panelId = props.panelId

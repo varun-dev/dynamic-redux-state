@@ -5,7 +5,7 @@ import ButtonIncrement from './components/ButtonIncrement'
 import ButtonDecrement from './components/ButtonDecrement'
 import LabelCounter from './components/LabelCounter'
 import { incrementCount } from './actions'
-import { xconnect } from '../../utils/redux-utils'
+import xconnect from '../../utils/redux-utils'
 
 class PanelCounter extends React.Component {
   componentDidMount() {
@@ -24,8 +24,8 @@ class PanelCounter extends React.Component {
   }
 }
 
-export default xconnect(null, { incrementCount })(PanelCounter)
-
-PanelCounter.contextTypes = {
-  store: PropTypes.object.isRequired,
+PanelCounter.propTypes = {
+  incrementCount: PropTypes.func,
 }
+
+export default xconnect(null, { incrementCount })(PanelCounter)

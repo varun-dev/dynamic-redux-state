@@ -1,16 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { uniqueId } from 'lodash'
 import { Provider } from 'react-redux'
 
-import { panelReducer } from '../panels/counter/reducers'
+import panelReducer from '../panels/counter/reducers'
 import { addPanelReducer } from './reducer-utils'
-import { PanelProvider } from './react-utils'
+import PanelProvider from './react-utils'
 
 // - wraps the golden layout callback for react panels
 // - generates a unique id for every panel for dynamic states
 // - initialised reducers
-export function wrapPanel(Component, store) {
-  return class Wrapped extends React.Component {
+export default function (Component, store) {
+  class PanelWrapper extends React.Component {
     render() {
       const id = `instance-${uniqueId()}`
       const { panelName } = this.props
@@ -25,4 +26,10 @@ export function wrapPanel(Component, store) {
       )
     }
   }
+
+  PanelWrapper.propTypes = {
+    panelName: PropTypes.string,
+  }
+
+  return PanelWrapper
 }

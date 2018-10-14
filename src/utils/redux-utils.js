@@ -12,7 +12,7 @@ import { assign, flowRight } from 'lodash/fp'
  * - adds the panelId to the ownProps for the component
  * - adds panelIds to the dispatched actions for handling the dynamic states
  */
-export const xconnect = (mapStateToProps, mapDispatchToProps = {}) => (Component) => {
+export default (mapStateToProps, mapDispatchToProps = {}) => (Component) => {
   class WrapperComponent extends React.Component {
     constructor(props, context) {
       super(props, context)
@@ -23,17 +23,17 @@ export const xconnect = (mapStateToProps, mapDispatchToProps = {}) => (Component
       }
     }
 
-    render() {
-      const newProps = assign(this.props, { panelId: this.context.panelId })
-      const stateProps = isFunction(mapStateToProps) ? mapStateToProps(this.props.state, newProps) : {}
-      return <Component {...assign(this.dispatchProps, stateProps, newProps)} />
-    }
-
     shouldComponentUpdate(nextProps) {
       const skipProps = isFunction(mapStateToProps)
         ? ['panelId', 'store']
         : ['panelId', 'store', 'state']
       return !isShallowEqual(nextProps, this.props, skipProps)
+    }
+
+    render() {
+      const newProps = assign(this.props, { panelId: this.context.panelId })
+      const stateProps = isFunction(mapStateToProps) ? mapStateToProps(this.props.state, newProps) : {}
+      return <Component {...assign(this.dispatchProps, stateProps, newProps)} />
     }
   }
 

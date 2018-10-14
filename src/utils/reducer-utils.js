@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { assign } from 'lodash/fp'
 import {
-  omit, isEmpty, unset, reduce, get, set, identity, size, mapValues, includes,
+  omit, isEmpty, unset, reduce, get, set, size, mapValues,
 } from 'lodash'
 
 export const PANELS_PATH = 'panels'
@@ -30,16 +30,11 @@ export const deletePanelReducer = (panelType, panelId) => {
   return recombineReducers(assign(root, { [PANELS_PATH]: panelsRoot }))
 }
 
-const getKeyFromAction = (action) => {
-  const panelId = get(action, 'meta.panelId')
-  return panelId && panelId.split('.')[1] || null
-}
-
 function recombineReducers(nextRoot) {
   if (isEmpty(nextRoot[PANELS_PATH])) return combineReducers(omit(nextRoot, PANELS_PATH))
   const nextPanelsRoot = reduce(nextRoot[PANELS_PATH], (acc, value, panelType) => {
     acc[panelType] = size(value) > 1
-      ? multireducer(value, 'panelId', getKeyFromAction)
+      ? multireducer(value, 'panelId')
       : combineReducers(value)
     return acc
   }, {})
@@ -48,11 +43,16 @@ function recombineReducers(nextRoot) {
 
 const initAction = { type: '@@multireducer/INIT' }
 
+const getKeyFromAction = (action) => {
+  const panelId = get(action, 'meta.panelId')
+  return panelId && panelId.split('.')[1] || null
+}
+
 /**
  * Use instances of same reducers based on panelIds
  * https://github.com/erikras/multireducer
  */
-export function multireducer(reducers, reducerKey, getKeyFromAction) {
+export function multireducer(reducers, reducerKey) {
   let isCustomMountPoint
   if (typeof reducers === 'function') {
     if (!reducerKey) {
