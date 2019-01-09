@@ -36,7 +36,7 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
-    "vscripts": "https://github.com/varun-dev/vslint.git",
+    "vscripts": "https://github.com/varun-dev/vscripts.git",
     "webpack-dev-server": "^3.0.0"
   }
 }
