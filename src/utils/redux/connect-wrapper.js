@@ -7,7 +7,7 @@ import {
 } from 'lodash'
 import { assign, flowRight, set } from 'lodash/fp'
 
-import { Consumer } from './panel-wrapper'
+import { Consumer } from '../panel-wrapper'
 
 /**
  * This function is an extension of redux connect, has the same signature.

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { decrementCountAction } from '../actions'
-import connect from '../../../utils/connect-wrapper'
+import connect from '../../../utils/redux/connect-wrapper'
 
 function ButtonDecrement({ onClick }) {
   return (

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { assign } from 'lodash/fp'
 import {
-  omit, isEmpty, unset, reduce, get, set, size, mapValues,
+  omit, isEmpty, unset, reduce, get, set, size, mapValues, uniqueId,
 } from 'lodash'
 
 export const PANELS_PATH = 'panels'
@@ -12,11 +12,13 @@ const root = {
 
 let panelsRoot = {}
 
+export const createPanelId = name => `${name}.instance-${uniqueId()}`
+
 export const createRootReducer = (nextRoot = root) => combineReducers(nextRoot)
 
-export const addPanelReducer = (panelType, panelId, reducer) => {
-  if (!panelType || !panelId || !reducer) return null
-  set(panelsRoot, `${panelType}.${panelId}`, reducer)
+export const addPanelReducer = (panelId, reducer) => {
+  if (!panelId || !reducer) return null
+  set(panelsRoot, `${panelId}`, reducer)
   return recombineReducers(assign(root, { [PANELS_PATH]: panelsRoot }))
 }
 

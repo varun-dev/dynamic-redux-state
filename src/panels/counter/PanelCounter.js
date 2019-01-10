@@ -4,29 +4,29 @@ import PropTypes from 'prop-types'
 import ButtonIncrement from './components/ButtonIncrement'
 import ButtonDecrement from './components/ButtonDecrement'
 import LabelCounter from './components/LabelCounter'
-import { incrementCountAction } from './actions'
-import connect from '../../utils/connect-wrapper'
+import panelRootRuducer from './reducers'
 
-class PanelCounter extends React.Component {
-  componentDidMount() {
-    const { incrementCount } = this.props
-    // TODO: investigate - Redux 4 not initialising reducer after replaceReducer API
-    incrementCount()
+export default class PanelCounter extends React.Component {
+  constructor (props, {store}) {
+    super(props)
+    store.addPanelReducer(props.panelId, panelRootRuducer)
   }
 
   render() {
     return (
-      <div>
+       <div>
         <LabelCounter />
         <ButtonIncrement />
         <ButtonDecrement />
-      </div>
+       </div>
     )
   }
 }
 
-PanelCounter.propTypes = {
-  incrementCount: PropTypes.func,
+PanelCounter.contextTypes = {
+  store: PropTypes.object
 }
 
-export default connect(null, { incrementCount: incrementCountAction })(PanelCounter)
+PanelCounter.propTypes = {
+  panelId: PropTypes.string
+}

@@ -38,7 +38,7 @@ export default class LayoutWrapper extends React.Component {
 
     layout.registerComponent(
       config.component,
-      PanelWrapper(PanelCounter, this.context.store)
+      PanelWrapper(PanelCounter, this.props.store)
     )
 
     ReactDOM.render(
@@ -50,6 +50,6 @@ export default class LayoutWrapper extends React.Component {
   }
 }
 
-LayoutWrapper.contextTypes = {
+LayoutWrapper.propTypes = {
   store: PropTypes.object.isRequired,
 }
