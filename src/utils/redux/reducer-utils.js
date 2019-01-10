@@ -1,46 +1,46 @@
 import { combineReducers } from 'redux'
-import { assign } from 'lodash/fp'
+import { unset, omit } from 'lodash/fp'
 import {
-  omit, isEmpty, unset, reduce, get, set, size, mapValues, uniqueId,
+  isEmpty, reduce, get, set, size, mapValues, uniqueId,
 } from 'lodash'
 
 export const PANELS_PATH = 'panels'
 
-const root = {
+const initialRoot = () => ({
   shared: () => 'path',
-}
+})
+
+const root = initialRoot()
 
 let panelsRoot = {}
 
 export const createPanelId = name => `${name}.instance-${uniqueId()}`
 
-export const createRootReducer = (nextRoot = root) => combineReducers(nextRoot)
+export const createRootReducer = (nextRoot = initialRoot()) => combineReducers(nextRoot)
 
 export const addPanelReducer = (panelId, reducer) => {
   if (!panelId || !reducer) return null
   set(panelsRoot, `${panelId}`, reducer)
-  return recombineReducers(assign(root, { [PANELS_PATH]: panelsRoot }))
+  return recombineReducers({...root, [PANELS_PATH]: panelsRoot })
 }
 
-export const deletePanelReducer = (panelType, panelId) => {
-  if (!panelType || !panelId) return null
-
-  unset(panelsRoot, `${panelType}.${panelId}`)
-  if (isEmpty(panelsRoot[panelType])) {
-    panelsRoot = omit(panelsRoot, panelType)
+export const deletePanelReducer = (panelId) => {
+  if (!panelId) return null
+  panelsRoot = unset(`${panelId}`)(panelsRoot)
+  const panelName = panelId.split('.')[0]
+  if (isEmpty(panelsRoot[panelName])) {
+    panelsRoot = omit(panelName)(panelsRoot)
   }
-  return recombineReducers(assign(root, { [PANELS_PATH]: panelsRoot }))
+  return recombineReducers({...root, [PANELS_PATH]: panelsRoot})
 }
 
 function recombineReducers(nextRoot) {
-  if (isEmpty(nextRoot[PANELS_PATH])) return combineReducers(omit(nextRoot, PANELS_PATH))
+  if (isEmpty(nextRoot[PANELS_PATH])) return combineReducers(omit(PANELS_PATH)(nextRoot))
   const nextPanelsRoot = reduce(nextRoot[PANELS_PATH], (acc, value, panelType) => {
-    acc[panelType] = size(value) > 1
-      ? multireducer(value, 'panelId')
-      : combineReducers(value)
+    acc[panelType] = multireducer(value, 'panelId')
     return acc
   }, {})
-  return createRootReducer(assign(nextRoot, { [PANELS_PATH]: combineReducers(nextPanelsRoot) }))
+  return createRootReducer({...nextRoot, [PANELS_PATH]: combineReducers(nextPanelsRoot) })
 }
 
 const initAction = { type: '@@multireducer/INIT' }
@@ -80,7 +80,7 @@ function multireducer(reducers, reducerKey) {
       const reducer = reducers[actionReducerKey]
 
       if (reducer) {
-        return assign(state, { [actionReducerKey]: reducer(state[actionReducerKey], action) })
+        return {...state, [actionReducerKey]: reducer(state[actionReducerKey], action)}
       }
     }
 

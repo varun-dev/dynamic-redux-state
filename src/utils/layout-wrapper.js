@@ -7,6 +7,8 @@ import PanelCounter from '../panels/counter/PanelCounter'
 import layoutConfig from '../layout.config'
 import PanelWrapper from './panel-wrapper'
 
+const panelConfigs = layoutConfig.content[0].content
+
 export default class LayoutWrapper extends React.Component {
   constructor(props) {
     super(props)
@@ -25,11 +27,10 @@ export default class LayoutWrapper extends React.Component {
 
   componentDidMount() {
     const layout = new GoldenLayout(layoutConfig, this.layoutEl.current)
-    const panelConfigs = layoutConfig.content[0].content
-    panelConfigs.forEach(this.renderPanel(layout))
     layout.init()
     // eslint-disable-next-line no-undef
     window.addEventListener('resize', layout.updateSize.bind(layout))
+    panelConfigs.forEach(this.renderPanel(layout))
   }
 
   renderPanel = layout => config => {

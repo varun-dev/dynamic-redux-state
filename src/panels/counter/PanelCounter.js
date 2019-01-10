@@ -21,6 +21,10 @@ export default class PanelCounter extends React.Component {
        </div>
     )
   }
+
+  componentWillUnmount () {
+    this.context.store.removePanelReducer(this.props.panelId)
+  }
 }
 
 PanelCounter.contextTypes = {
