@@ -7,7 +7,7 @@
     "build": "vscripts build",
     "lint": "vscripts lint",
     "lint-fix": "vscripts lint --fix",
-    "start": "webpack-dev-server --mode=development",
+    "start": "vscripts start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,16 +27,15 @@
   },
   "homepage": "",
   "dependencies": {
-    "golden-layout": "^1.5.8",
-    "lodash": "^4.17.10",
-    "prop-types": "^15.5.10",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "golden-layout": "^1.5.9",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^5.0.0",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
-    "vscripts": "https://github.com/varun-dev/vscripts.git",
-    "webpack-dev-server": "^3.0.0"
+    "vscripts": "https://github.com/varun-dev/vscripts.git"
   }
 }

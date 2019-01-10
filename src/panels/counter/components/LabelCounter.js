@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
-import xconnect from '../../../utils/redux-utils'
+import connect from '../../../utils/connect-wrapper'
 
 function LabelCounter({ label }) {
   return (
@@ -19,4 +19,4 @@ function mapStateToProps(state, { panelId }) {
   }
 }
 
-export default xconnect(mapStateToProps)(LabelCounter)
+export default connect(mapStateToProps)(LabelCounter)

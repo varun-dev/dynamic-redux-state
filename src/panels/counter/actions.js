@@ -1,2 +1,2 @@
-export const incrementCount = () => ({ type: 'INCREMENT_COUNT' })
-export const decrementCount = () => ({ type: 'DECREMENT_COUNT' })
+export const incrementCountAction = () => ({ type: 'INCREMENT_COUNT' })
+export const decrementCountAction = () => ({ type: 'DECREMENT_COUNT' })

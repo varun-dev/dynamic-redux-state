@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import GoldenLayoutWrapper from './GoldenLayoutWrapper'
+import LayoutWrapper from './utils/layout-wrapper'
 import { createRootReducer } from './utils/reducer-utils'
 
 import './index.css'
@@ -14,7 +14,7 @@ const store = createStore(createRootReducer(), devToolEnahncer)
 
 ReactDOM.render(
   <Provider store={store}>
-    <GoldenLayoutWrapper />
+    <LayoutWrapper />
   </Provider>,
-  document.getElementById('wrapper'),
+  document.getElementById('wrapper'), // eslint-disable-line no-undef
 )

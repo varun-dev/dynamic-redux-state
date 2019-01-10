@@ -15,13 +15,13 @@ let panelsRoot = {}
 export const createRootReducer = (nextRoot = root) => combineReducers(nextRoot)
 
 export const addPanelReducer = (panelType, panelId, reducer) => {
-  if (!panelType || !panelId || !reducer) return
+  if (!panelType || !panelId || !reducer) return null
   set(panelsRoot, `${panelType}.${panelId}`, reducer)
   return recombineReducers(assign(root, { [PANELS_PATH]: panelsRoot }))
 }
 
 export const deletePanelReducer = (panelType, panelId) => {
-  if (!panelType || !panelId) return
+  if (!panelType || !panelId) return null
 
   unset(panelsRoot, `${panelType}.${panelId}`)
   if (isEmpty(panelsRoot[panelType])) {
@@ -45,14 +45,14 @@ const initAction = { type: '@@multireducer/INIT' }
 
 const getKeyFromAction = (action) => {
   const panelId = get(action, 'meta.panelId')
-  return panelId && panelId.split('.')[1] || null
+  return (panelId && panelId.split('.')[1]) || null
 }
 
 /**
  * Use instances of same reducers based on panelIds
  * https://github.com/erikras/multireducer
  */
-export function multireducer(reducers, reducerKey) {
+function multireducer(reducers, reducerKey) {
   let isCustomMountPoint
   if (typeof reducers === 'function') {
     if (!reducerKey) {
